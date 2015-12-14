@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="dialogPadding">24dp</dimen>
+    <dimen name="titlePadding">20dp</dimen>
+    <dimen name="titleDialogText">21sp</dimen>
+    <dimen name="secondaryDialogText">15sp</dimen>
+    <dimen name="basePadding">8dp</dimen>
+    <dimen name="buttonContainerHeight">36dp</dimen>
+    <dimen name="minButtonWidth">64dp</dimen>
+    <dimen name="buttonTextSize">14sp</dimen>
+</resources>

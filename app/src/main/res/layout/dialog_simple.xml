@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dialogPadding"
+    android:paddingRight="@dimen/dialogPadding"
+    android:paddingTop="@dimen/dialogPadding">
+
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/titlePadding"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/titleDialogText" />
+
+    <TextView
+        android:id="@+id/tvDialogContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dialogPadding"
+        android:textColor="@color/secondaryText"
+        android:textSize="@dimen/secondaryDialogText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonContainerHeight"
+        android:layout_marginBottom="@dimen/basePadding"
+        android:layout_marginTop="@dimen/basePadding"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btOk"
+            style="@style/MaterialDialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/basePadding"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btCancel"
+            style="@style/MaterialDialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

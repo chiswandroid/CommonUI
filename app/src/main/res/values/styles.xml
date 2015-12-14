@@ -1,0 +1,13 @@
+<resources>
+    <style name="MaterialDialog" parent="Theme.AppCompat.Dialog"/>
+
+    <style name="MaterialDialogButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:minWidth">@dimen/minButtonWidth</item>
+        <item name="android:paddingLeft">@dimen/basePadding</item>
+        <item name="android:paddingRight">@dimen/basePadding</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/buttonColor</item>
+        <item name="android:textSize">@dimen/buttonTextSize</item>
+    </style>
+</resources>
