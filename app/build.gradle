@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 23
@@ -21,4 +22,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
+}
+
+publish {
+    groupId = 'com.chisw'
+    artifactId = 'commonui'
+    publishVersion = '0.0.1'
+    desc = 'A small library which helps add different UI-elements to project'
+    licences = ['MIT']
+    website = 'https://github.com/chiswandroid/CommonUI'
 }
