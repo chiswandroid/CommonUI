@@ -2,18 +2,20 @@ package com.chisw.commonui.utils;
 
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.support.v4.util.ArrayMap;
 import android.util.Log;
 import android.widget.TextView;
 
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
+import java.util.Map;
 
 public final class TypefaceUtils {
 
     public static final String ROBOTO_MEDIUM = "fonts/robotoMedium.ttf";
 
     private static final String TAG = TypefaceUtils.class.getSimpleName();
-    private static final HashMap<String, SoftReference<Typeface>> cache = new HashMap<>();
+    private static final Map<String, SoftReference<Typeface>> cache = new ArrayMap<>();
 
     private TypefaceUtils() {
     }

@@ -1,11 +1,21 @@
 <resources>
-    <style name="MaterialDialog" parent="Theme.AppCompat.Dialog"/>
+
+    <style name="MaterialDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
 
     <style name="MaterialDialogButton" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:minWidth">@dimen/minButtonWidth</item>
-        <item name="android:paddingLeft">@dimen/basePadding</item>
-        <item name="android:paddingRight">@dimen/basePadding</item>
+        <item name="android:paddingLeft">@dimen/buttonBorderPadding</item>
+        <item name="android:paddingRight">@dimen/buttonBorderPadding</item>
+        <item name="android:paddingTop">@dimen/buttonBorderPadding</item>
+        <item name="android:paddingBottom">@dimen/buttonBorderPadding</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/buttonColor</item>
         <item name="android:textSize">@dimen/buttonTextSize</item>

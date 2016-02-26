@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Sample</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="noImplement">Your activity must implement dialog callback</string>
     <string name="temp.title">Use Google\'s location service?</string>
     <string name="temp.content">Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</string>
 </resources>

@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.chisw.commonui.dialog.SimpleDialog;
+import com.chisw.commonui.dialog.OkCancelDialog;
 
-public class StartSimpleDialogActivity extends AppCompatActivity implements SimpleDialog.OnSimpleDialogCallback {
+public class StartSimpleDialogActivity extends AppCompatActivity implements OkCancelDialog.OnSimpleDialogCallback {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -17,9 +17,12 @@ public class StartSimpleDialogActivity extends AppCompatActivity implements Simp
     }
 
     public void showDialog(View v) {
-        SimpleDialog.initInstance("Use Google\'s location service?",
-                "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.")
-                .show(getSupportFragmentManager(), "Simple dialog");
+        OkCancelDialog.Builder builder = new OkCancelDialog.Builder();
+        builder.setTitle(getString(R.string.temp_title))
+                .setContent(getString(R.string.temp_content))
+                .setCancelOnTouchOutside(true)
+                .build()
+                .show(getSupportFragmentManager(), "OkCancelDialog");
     }
 
     @Override
