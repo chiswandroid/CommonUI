@@ -1,54 +1,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="@dimen/dialogPadding"
     tools:ignore="RtlHardcoded">
 
     <TextView
         android:id="@+id/tvDialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/titlePadding"
+        android:layout_marginLeft="@dimen/dialogPadding"
+        android:layout_marginRight="@dimen/dialogPadding"
+        android:layout_marginTop="@dimen/dialogPadding"
         android:fontFamily="sans-serif-medium"
-        android:paddingLeft="@dimen/dialogPadding"
-        android:paddingRight="@dimen/dialogPadding"
         android:textColor="@color/black"
-        android:textSize="@dimen/titleDialogText" />
+        android:textSize="@dimen/titleDialogText"
+        tools:text="@string/temp.title" />
 
     <TextView
         android:id="@+id/tvDialogContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dialogPadding"
-        android:paddingLeft="@dimen/dialogPadding"
-        android:paddingRight="@dimen/dialogPadding"
+        android:layout_marginLeft="@dimen/dialogPadding"
+        android:layout_marginRight="@dimen/dialogPadding"
+        android:layout_marginTop="@dimen/titlePadding"
         android:textColor="@color/secondaryText"
-        android:textSize="@dimen/secondaryDialogText" />
+        android:textSize="@dimen/secondaryDialogText"
+        tools:text="@string/temp.content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/basePadding"
-        android:layout_marginTop="@dimen/basePadding"
-        android:gravity="end"
+        android:gravity="bottom|right"
+        android:minHeight="@dimen/minLayoutHeight"
+        android:paddingBottom="@dimen/basePadding"
+        android:paddingTop="@dimen/basePadding"
         android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btOk"
-            style="@style/MaterialDialogButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/basePadding" />
 
         <Button
             android:id="@+id/btCancel"
             style="@style/MaterialDialogButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/basePadding" />
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/basePadding"
+            android:text="@string/disagree" />
 
+        <Button
+            android:id="@+id/btOk"
+            style="@style/MaterialDialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/basePadding"
+            android:text="@string/agree" />
     </LinearLayout>
-
 </LinearLayout>

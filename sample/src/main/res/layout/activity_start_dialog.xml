@@ -5,8 +5,8 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:onClick="showDialog"
-        android:text="Show dialog" />
+        android:layout_height="wrap_content"
+        android:onClick="showSimpleDialog"
+        android:text="Simple dialog" />
 
 </LinearLayout>

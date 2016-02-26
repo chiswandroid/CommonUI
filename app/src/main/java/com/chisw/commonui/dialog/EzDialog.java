@@ -1,36 +1,37 @@
 package com.chisw.commonui.dialog;
 
 import android.app.Dialog;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.chisw.commonui.R;
-import com.chisw.commonui.utils.TypefaceUtils;
 
-public class OkCancelDialog extends BaseMaterialDialog<OkCancelDialog.OnSimpleDialogCallback> {
+public class EzDialog extends BaseMaterialDialog<EzDialog.OnEzDialogCallback> {
     private static final String BUILDER = "Builder";
 
-    public interface OnSimpleDialogCallback {
-        void onOk();
+    public interface OnEzDialogCallback {
+        void onEzPositiveClick(String fragmentTag);
 
-        void onCancel();
+        void onEzNegativeClick(String fragmentTag);
     }
 
     private Builder builder;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onParseArguments(Bundle arguments) {
         builder = getArguments().getParcelable(BUILDER);
-        assert builder != null;
-        initIfNeeded();
+        if (builder == null) {
+            throw new IllegalArgumentException(getContext().getString(R.string.illegalBuilder));
+        }
     }
 
     @Override
@@ -41,9 +42,13 @@ public class OkCancelDialog extends BaseMaterialDialog<OkCancelDialog.OnSimpleDi
     @LayoutRes
     @Override
     protected int dialogLayoutResId() {
-        return R.layout.d_simple;
+        return R.layout.dialog_simple;
     }
 
+    @Override
+    protected int dialogTheme() {
+        return builder.dialogTheme != 0 ? builder.dialogTheme : super.dialogTheme();
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -52,51 +57,40 @@ public class OkCancelDialog extends BaseMaterialDialog<OkCancelDialog.OnSimpleDi
         final Button btOk = (Button) view.findViewById(R.id.btOk);
         final Button btCancel = (Button) view.findViewById(R.id.btCancel);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            TypefaceUtils.setTypeface(tvDialogTitle, TypefaceUtils.ROBOTO_MEDIUM);
-            TypefaceUtils.setTypeface(btOk, TypefaceUtils.ROBOTO_MEDIUM);
-            TypefaceUtils.setTypeface(btCancel, TypefaceUtils.ROBOTO_MEDIUM);
+            Typeface robotoMedium = Typeface.createFromAsset(getResources().getAssets(), "fonts/robotoMedium.ttf");
+            tvDialogTitle.setTypeface(robotoMedium);
+            btOk.setTypeface(robotoMedium);
+            btCancel.setTypeface(robotoMedium);
         }
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onOk();
+                callback.onEzPositiveClick(getTag());
             }
         });
         btCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onCancel();
+                callback.onEzNegativeClick(getTag());
             }
         });
         tvDialogTitle.setText(builder.title);
         tvDialogContent.setText(builder.content);
-        btOk.setText(builder.okButtonText);
-        btCancel.setText(builder.cancelButtonText);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            TypefaceUtils.clearCache();
-        }
-    }
-
-    private void initIfNeeded() {
-        if (builder.okButtonText == null) {
-            builder.okButtonText = getString(R.string.ok);
-        }
-        if (builder.cancelButtonText == null) {
-            builder.cancelButtonText = getString(R.string.cancel);
+        if (decorate != null) {
+            final String tag = getTag();
+            decorate.decorate(tvDialogTitle, tag);
+            decorate.decorate(tvDialogContent, tag);
+            decorate.decorate(btOk, tag);
+            decorate.decorate(btCancel, tag);
         }
     }
 
     public static class Builder implements Parcelable {
         private String title;
         private String content;
-        private String okButtonText;
-        private String cancelButtonText;
         private boolean cancelOnTouchOutside;
+        @StyleRes
+        private int dialogTheme;
 
         public Builder() {
         }
@@ -104,9 +98,8 @@ public class OkCancelDialog extends BaseMaterialDialog<OkCancelDialog.OnSimpleDi
         protected Builder(Parcel in) {
             title = in.readString();
             content = in.readString();
-            okButtonText = in.readString();
-            cancelButtonText = in.readString();
             cancelOnTouchOutside = in.readByte() != 0;
+            dialogTheme = in.readInt();
         }
 
         public static final Creator<Builder> CREATOR = new Creator<Builder>() {
@@ -121,13 +114,13 @@ public class OkCancelDialog extends BaseMaterialDialog<OkCancelDialog.OnSimpleDi
             }
         };
 
-        public Builder setTitle(String title) {
-            this.title = title;
+        public Builder setCancelOnTouchOutside(boolean cancelOnTouchOutside) {
+            this.cancelOnTouchOutside = cancelOnTouchOutside;
             return this;
         }
 
-        public Builder setCancelOnTouchOutside(boolean cancelOnTouchOutside) {
-            this.cancelOnTouchOutside = cancelOnTouchOutside;
+        public Builder setTitle(String title) {
+            this.title = title;
             return this;
         }
 
@@ -136,22 +129,17 @@ public class OkCancelDialog extends BaseMaterialDialog<OkCancelDialog.OnSimpleDi
             return this;
         }
 
-        public Builder setCancelButtonText(String cancelButtonText) {
-            this.cancelButtonText = cancelButtonText;
+        public Builder setDialogTheme(int dialogTheme) {
+            this.dialogTheme = dialogTheme;
             return this;
         }
 
-        public Builder setOkButtonText(String okButtonText) {
-            this.okButtonText = okButtonText;
-            return this;
-        }
-
-        public OkCancelDialog build() {
-            final OkCancelDialog okCancelDialog = new OkCancelDialog();
-            final Bundle bundle = new Bundle();
-            bundle.putParcelable(BUILDER, this);
-            okCancelDialog.setArguments(bundle);
-            return okCancelDialog;
+        public EzDialog build() {
+            final EzDialog dialog = new EzDialog();
+            final Bundle arg = new Bundle();
+            arg.putParcelable(BUILDER, this);
+            dialog.setArguments(arg);
+            return dialog;
         }
 
         @Override
@@ -163,9 +151,9 @@ public class OkCancelDialog extends BaseMaterialDialog<OkCancelDialog.OnSimpleDi
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(title);
             dest.writeString(content);
-            dest.writeString(okButtonText);
-            dest.writeString(cancelButtonText);
             dest.writeByte((byte) (cancelOnTouchOutside ? 1 : 0));
+            dest.writeInt(dialogTheme);
         }
+
     }
 }

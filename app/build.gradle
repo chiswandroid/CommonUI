@@ -28,7 +28,7 @@ dependencies {
 publish {
     groupId = 'com.chisw'
     artifactId = 'commonui'
-    publishVersion = '0.0.2'
+    publishVersion = '0.0.3'
     desc = 'A small library which helps add different UI-elements to project'
     licences = ['MIT']
     website = 'https://github.com/chiswandroid/CommonUI'

@@ -7,6 +7,6 @@ Usage
 
 ```groovy
 dependencies {
-    compile 'com.chisw:commonui:0.0.1'
+    compile 'com.chisw:commonui:0.0.3'
 }
 ```

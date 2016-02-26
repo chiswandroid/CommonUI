@@ -9,13 +9,14 @@
     </style>
 
     <style name="MaterialDialogButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:gravity">center</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:minWidth">@dimen/minButtonWidth</item>
+        <item name="android:minHeight">36dp</item>
+
         <item name="android:paddingLeft">@dimen/buttonBorderPadding</item>
         <item name="android:paddingRight">@dimen/buttonBorderPadding</item>
-        <item name="android:paddingTop">@dimen/buttonBorderPadding</item>
-        <item name="android:paddingBottom">@dimen/buttonBorderPadding</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/buttonColor</item>
         <item name="android:textSize">@dimen/buttonTextSize</item>

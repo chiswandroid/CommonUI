@@ -4,9 +4,9 @@
     <dimen name="titleDialogText">21sp</dimen>
     <dimen name="secondaryDialogText">15sp</dimen>
     <dimen name="basePadding">8dp</dimen>
-    <dimen name="buttonBorderPadding">10dp</dimen>
+    <dimen name="buttonBorderPadding">4dp</dimen>
     <dimen name="buttonContainerHeight">52dp</dimen>
     <dimen name="minButtonWidth">64dp</dimen>
-    <dimen name="buttonTextSize">16sp</dimen>
+    <dimen name="buttonTextSize">14sp</dimen>
     <dimen name="minLayoutHeight">52sp</dimen>
 </resources>
